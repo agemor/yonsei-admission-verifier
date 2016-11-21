@@ -1,12 +1,15 @@
 <?php
 
+include "module.db.php";
+
 const READY = 0;
 const ERROR = 1;
 const SUCCESS = 2;
 
 $admissionType = array(
     'Science' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_1st_CABCBDBF/pass_ok.asp",
-    'ForeignArt' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass.asp"
+    'ForeignArt' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass.asp",
+    'Special' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_last_b/pass_ok.asp"
 );
 
 function admissionCheck($url, $name, $id, $birthdate)
@@ -27,6 +30,7 @@ function admissionCheck($url, $name, $id, $birthdate)
     $ch = curl_init();
     curl_setopt_array($ch, $defaults);
     $result = curl_exec($ch);
+   // var_dump($result);
     curl_close($ch);
     return strpos($result, "축하합니다") !== false;;
 }
@@ -59,14 +63,46 @@ if (!empty($_POST["name"])) {
         $responseMessage = "이메일 주소가 너무 깁니다.";
     }
 
-    $checkResult = admissionCheck($admissionType['Science'], $student['name'], $student['id'], $student['birthdate']);
+    $checkResult = admissionCheck($admissionType['Special'], $student['name'], $student['id'], $student['birthdate']);
     if (!$checkResult) {
         $response = ERROR;
         $responseMessage = "합격자 정보를 찾을 수 없습니다. 입력된 정보를 다시 확인해 주세요.";
     }
     else {
-        $response = SUCCESS;
-        $responseMessage = "합격자 인증이 완료되었습니다.";
+
+
+        // 이미 리스트에 있는지 체크
+        $reply = $module->db->in('yonsei_admission_verification')
+                               ->select('email')
+                               ->where('application_no', '=', $student["id"])
+                               ->goAndGet();
+
+        // 이미 인증된 계정
+        if ($reply) {
+            // 이메일 주소 보여주기
+            $response = SUCCESS;
+            $responseMessage = "이미 인증된 정보입니다. ".$reply["email"]."로 커뮤니티 가입 관련 메일이 발송될 예정입니다.";
+            return;
+        } 
+
+
+        // 새로 인증하는 계정
+        else {
+            $reply = $module->db->in('yonsei_admission_verification')
+                           ->insert('name', base64_encode($student['name']))
+                           ->insert('application_no', $student['id'])
+                           ->insert('birthdate', $student['birthdate'])
+                           ->insert('email', $student['email'])
+                           ->go();
+            if ($reply) {
+                $response = SUCCESS;
+                $responseMessage = "합격자 인증이 완료되었습니다.";
+            } else {
+                $response = ERROR;
+                $responseMessage = "서버 에러가 발생하였습니다.";
+            }
+        }
+
     }
 }
 

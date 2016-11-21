@@ -12,11 +12,26 @@
   <body>
     <div class="container">
       <div class="header clearfix">
-        <h3 class="text-muted">연세대학교 합격자 인증 시스템</h3>
+        <h3 class="text-muted"><img src="./yonsei-logo.png" height="42" width="42" style="margin-top: -8px">
+연세대학교 합격자 인증 시스템</h3>
       </div>
-      <div class="jumbotron">
-        <h3>공지사항 제목</h3>
-        <p class="lead mt-3">공지사항 내용</p>
+      <div class="jumbotron text-xs-left">
+
+        <h3>안녕하십니까, 17학번 새내기 여러분!</h3><br>
+
+
+        <p class="lead">여러분들의 연세대학교 합격을 진심으로 축하드립니다.</p>
+
+        <p> 저희는 연세대학교 중앙새내기맞이단으로 17학번 새내기 여러분들의 안전하고 즐거운 새내기 생활을 위하여 결성된 유일한 공식 단체입니다. 본 단체는 학교 중앙 소속 단체로서 신입생 여러분들의 안정적인 학교 생활 적응을 위하여 각종 업무를 진행하고 있습니다.</p>
+
+        <p>그동안 매년 합격자 발표 철마다 연세대학교에서는 신입생의 신분을 사칭하는 사건이 발생해 논란이 일었습니다. 그런 사건을 미리 예방하고자 저희 17학년도 중앙새내기맞이단은 자체적으로 ‘합격자 인증 시스템’을 개발하여 운영하고 있습니다. </p>
+
+
+        <p>아래 지시 사항에 따라 이름과 수험번호 등의 인증 정보를 기입하신 뒤 <mark>합격자 인증하기</mark> 버튼을 누르시면 자동으로 합격자 인증이 진행됩니다.</p><br>
+
+        <p style="margin-bottom: -15px"><em><strong>기입하신 정보는 안전하게 보관되며 인증 절차를 마친 후 완전히 폐기됩니다.</strong></em></p>
+
+
       </div>
       <form method="post">
         <div class="form-group row">
@@ -30,8 +45,7 @@
           <div class="col-xs-10">
             <select class="form-control" name="type">
               <option>입시 전형을 선택하세요</option>
-              <option>IT명품인재전형</option>
-              <option>과학공학인재전형</option>
+              <option>특기자 전형</option>
             </select>
           </div>
         </div>
@@ -54,6 +68,15 @@
             <p id="email-help-block" class="form-text text-muted">이메일을 통해 커뮤니티 초대 메일이 발송되므로 꼭 올바른 주소를 입력해 주세요.</p>
           </div>
         </div>
+
+        <div class=" text-xs-center">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">합격자 인증을 위한 개인정보 처리에 동의합니다.</span>
+          </label>
+        </div>
+
         <div class="text-xs-center mt-2 mb-2">
           <button type="submit" class="btn btn-lg btn-primary text-center">합격자 인증하기</button>
         </div>
@@ -61,12 +84,12 @@
       <script>
         <?php 
           if ($response > 0) {
-          	echo ("alert(\"" . $responseMessage . "\");");
+            echo ("alert(\"" . $responseMessage . "\");");
           }
           ?>
       </script>
       <footer class="footer">
-        <p>&copy; 글로벌융합공학부 15 김현준</p>
+        <p>개발: <a href="mailto:hyunjun.kim@yonsei.ac.kr">글로벌융합공학부 15 김현준</a></p>
       </footer>
     </div>
   </body>
