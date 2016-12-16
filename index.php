@@ -37,7 +37,7 @@
           <label for="admissions-type-input" class="col-xs-2 col-form-label">입시 전형</label>
           <div class="col-xs-10">
             <select class="form-control" name="type" required>
-              <option value="0">특기자 전형</option>
+              <option value="0">수시모집 전(全) 전형</option>
               <option value="1">외국인 전형 (Int'l Students)</option>
               <option value="2">재외국민 전형 (예체능계열)</option>
               <option value="3">재외국민 전형 (일반)</option>
