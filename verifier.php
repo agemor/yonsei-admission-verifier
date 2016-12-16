@@ -7,9 +7,10 @@ const ERROR = 1;
 const SUCCESS = 2;
 
 $admissionType = array(
-    'Science' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_1st_CABCBDBF/pass_ok.asp",
-    'ForeignArt' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass.asp",
-    'Special' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_last_b/pass_ok.asp"
+    '0' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_last_b/pass_ok.asp", // 특기자 전형 (인문/사회/과학/국제/IT명품/예체능)
+    '1' => "https://www2.yonsei.ac.kr/entrance/2017/fore/fore_2017_3_art/pass_ok.asp", // 외국인 전형 (예체능계열)
+    '2' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass_ok.asp", // 재외국민 전형 (예체능계열)
+    '3' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_final/pass_ok.asp" // 재외국민 전형 (일반)
 );
 
 function admissionCheck($url, $name, $id, $birthdate)
@@ -53,6 +54,7 @@ if (!empty($_POST["name"])) {
         'type' => $_POST["type"],
         'email' => $_POST["email"]
     );
+
     if ($response != ERROR && empty($student['name']) || empty($student['id']) || empty($student['birthdate']) || empty($student['type']) || empty($student['email'])) {
         $response = ERROR;
         $responseMessage = "전송된 정보가 올바르지 않습니다.";
@@ -63,7 +65,7 @@ if (!empty($_POST["name"])) {
         $responseMessage = "이메일 주소가 너무 깁니다.";
     }
 
-    $checkResult = admissionCheck($admissionType['Special'], $student['name'], $student['id'], $student['birthdate']);
+    $checkResult = admissionCheck($admissionType[$student['type']], $student['name'], $student['id'], $student['birthdate']);
     if (!$checkResult) {
         $response = ERROR;
         $responseMessage = "합격자 정보를 찾을 수 없습니다. 입력된 정보를 다시 확인해 주세요.";
