@@ -10,7 +10,8 @@ $admissionType = array(
     '0' => "https://www2.yonsei.ac.kr/entrance/2017/susi/pass_last_1st/pass_ok.asp", // 수시모집 전 전형
     '1' => "https://www2.yonsei.ac.kr/entrance/2017/fore/fore_2017_3_art/pass_ok.asp", // 외국인 전형 (예체능계열)
     '2' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass_ok.asp", // 재외국민 전형 (예체능계열)
-    '3' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_final/pass_ok.asp" // 재외국민 전형 (일반)
+    '3' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_final/pass_ok.asp", // 재외국민 전형 (일반)
+    '4' => "https://www2.yonsei.ac.kr/entrance//2017/jfore/jfore_2017_3_gld/pass_ok.asp" // 재외국민 전형 (일반)
 );
 
 function admissionCheck($url, $name, $id, $birthdate)
