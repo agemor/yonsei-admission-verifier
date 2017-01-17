@@ -43,6 +43,7 @@
               <option value="2">재외국민 전형 (예체능계열)</option>
               <option value="3">재외국민 전형 (일반)</option>
               <option value="4">재외국민 전형 (글로벌인재학부)</option>
+              <option value="5">정시모집 전형</option>
             </select>
           </div>
         </div>
