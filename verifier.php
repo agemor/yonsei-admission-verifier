@@ -12,7 +12,8 @@ $admissionType = array(
     '2' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_art/pass_ok.asp", // 재외국민 전형 (예체능계열)
     '3' => "https://www2.yonsei.ac.kr/entrance/2017/jfore/jfore_2017_3_final/pass_ok.asp", // 재외국민 전형 (일반)
     '4' => "https://www2.yonsei.ac.kr/entrance//2017/jfore/jfore_2017_3_gld/pass_ok.asp", // 재외국민 전형 (일반)
-    '5' => "https://www2.yonsei.ac.kr/entrance/2017/jungsi/pass_last_all/pass_ok.asp" // 정시모집 전 전형
+    '5' => "https://www2.yonsei.ac.kr/entrance/2017/jungsi/pass_last_all/pass_ok.asp", // 정시모집 전 전형
+    '6' => "https://www2.yonsei.ac.kr/entrance/2017/phar/pass_last/pass_ok.asp" // 약학대학 입학전형
 );
 
 function admissionCheck($url, $name, $id, $birthdate)
